@@ -19,6 +19,12 @@ public interface CartRepository extends JpaRepository<CartItem, Integer> {
     @Query(value = "delete from cart_item where book_id =? and id=?",nativeQuery = true)
     void deleteByBookIdandId(int bookId, int Id);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE from cart_item where book_id =? and id=?",nativeQuery = true)
+    void UpdateByBookIdandId(int bookId, int Id);
+
+
 //
 //    @Modifying
 //    @Transactional

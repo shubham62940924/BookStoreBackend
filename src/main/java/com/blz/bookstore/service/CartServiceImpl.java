@@ -119,6 +119,13 @@ public class CartServiceImpl implements ICartService {
         return "Book deleted Successfully from cart !!!";
     }
 
+    @Override
+    public String UpdateBookFromCart( int bookId ,String token) {
+        int userId = TokenUtil.decodeToken(token);
+        cartRepository.UpdateByBookIdandId(bookId, userId);
+        return "Book Updated Successfully  !!!";
+    }
+
     /**
      *Empty cart
      * @param token

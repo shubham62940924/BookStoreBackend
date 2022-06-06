@@ -23,7 +23,6 @@ public class CartServiceController {
     private ICartService cartService;
 
     /**
-     *
      * @param token
      * @param bookId
      * @return
@@ -31,34 +30,39 @@ public class CartServiceController {
 
     @GetMapping("/addbookCart/{bookId}")
     public ResponseEntity<ResponseDTO> addBooksToCart(@RequestHeader("token") String token, @PathVariable int bookId) {
-        String message = cartService.addBooktoCart(token,bookId);
+        String message = cartService.addBooktoCart(token, bookId);
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new ResponseDTO("book added to cart", message));
     }
 
+
     /**
-     *
      * @param token
      * @return
      */
     @GetMapping("/GetCartBookList/{token}")
-    public List<BookModel> getCartBookList(@PathVariable String token)
-    {
+    public List<BookModel> getCartBookList(@PathVariable String token) {
         return cartService.findBookList(token);
     }
 
     /**
-     *
      * @param token
      * @param bookId
      * @return
      */
     @GetMapping("/deleteBookFromCart/{bookId}")
-    public ResponseEntity<ResponseDTO> deleteBookFromCart(@RequestHeader("token") String token,@PathVariable int bookId) {
-        String message = cartService.deleteBookFromCart(bookId,token);
+    public ResponseEntity<ResponseDTO> deleteBookFromCart(@RequestHeader("token") String token, @PathVariable int bookId) {
+        String message = cartService.deleteBookFromCart(bookId, token);
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new ResponseDTO("Book is deleted from Cart", message));
     }
 
+    @GetMapping("/UpdateBookFromCart/{bookId}")
+    public ResponseEntity<ResponseDTO> UpdateBookFromCart(@RequestHeader("token") String token, @PathVariable int bookId) {
+        String message = cartService.UpdateBookFromCart(bookId, token);
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new ResponseDTO("Book is updated from Cart", message));
 
+
+    }
 }

@@ -18,4 +18,6 @@ public interface ICartService {
     String deleteBookFromCart(int bookId ,String token);
 
     String emptyCart(String token);
+
+    String UpdateBookFromCart(int bookId ,String token);
 }
